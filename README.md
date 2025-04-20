@@ -32,5 +32,5 @@ Replace `YOUR-API-KEY` with your Firecrawl API key. If you don't have one yet, c
 If you're using Zed's agent mode, you need to enable this context server for your assistant:
 
 1. Open Zed's assistant settings
-2. Enable the firecrawl mpc server. If you see that the status of the tool is a red dot, make sure you added your exa api key in settings
+2. Enable the firecrawl mpc server. If you see that the status of the tool is a red dot, make sure you added your firecrawl api key in settings
 3. Enable the firecrawl mpc server in the active assistant profile. In the chat section, click on the `Write | Ask` button, then click on `tools`, then enable the firecrawl mpc server.
