@@ -17,11 +17,12 @@ To configure Firecrawl MCP in Zed:
 ```json
 {
   "context_servers": {
-  "mcp-server-firecrawl": {
-    "settings": {
-      "firecrawl_api_key": "YOUR-API-KEY"
+    "mcp-server-firecrawl": {
+      "settings": {
+        "firecrawl_api_key": "YOUR-API-KEY"
+      }
     }
-  },
+  }
 }
 ```
 
