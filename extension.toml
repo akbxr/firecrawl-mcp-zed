@@ -1,7 +1,7 @@
 id = "mcp-server-firecrawl"
 name = "Firecrawl MCP Server"
 description = "Model Context Protocol Server for Firecrawl"
-version = "0.0.1"
+version = "0.0.2"
 schema_version = 1
 authors = ["Akbxr <hi@akbxr.com>"]
 repository = "https://github.com/akbxr/firecrawl-mcp-zed"
