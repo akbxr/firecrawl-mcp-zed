@@ -1,4 +1,6 @@
 {
   /// Your Firecrawl API key
   "firecrawl_api_key": "YOUR_FIRECRAWL_API_KEY"
+  /// Your optional Firecrawl API URL for self-hosted instances
+  // "firecrawl_api_url": "YOUR_FIRECRAWL_API_URL"
 }
