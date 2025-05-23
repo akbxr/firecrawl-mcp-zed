@@ -14,6 +14,8 @@ struct FirecrawlModelContextExtension;
 #[derive(Debug, Deserialize, JsonSchema)]
 struct FirecrawlContextServerSettings {
     firecrawl_api_key: String,
+    #[serde(default)]
+    firecrawl_api_url: Option<String>,
 }
 
 impl zed::Extension for FirecrawlModelContextExtension {
@@ -46,7 +48,15 @@ impl zed::Extension for FirecrawlModelContextExtension {
                 .join(SERVER_PATH)
                 .to_string_lossy()
                 .to_string()],
-            env: vec![("FIRECRAWL_API_KEY".into(), settings.firecrawl_api_key)],
+            env: {
+                let mut env_vars = vec![("FIRECRAWL_API_KEY".into(), settings.firecrawl_api_key)];
+
+                if let Some(api_url) = settings.firecrawl_api_url {
+                    env_vars.push(("FIRECRAWL_API_URL".into(), api_url));
+                }
+
+                env_vars
+            },
         })
     }
 

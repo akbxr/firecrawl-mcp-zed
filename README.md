@@ -19,7 +19,8 @@ To configure Firecrawl MCP in Zed:
   "context_servers": {
     "mcp-server-firecrawl": {
       "settings": {
-        "firecrawl_api_key": "YOUR-API-KEY"
+        "firecrawl_api_key": "YOUR-API-KEY",
+        "firecrawl_api_url": "YOUR-API-URL" // Optional, for self-hosted instances
       }
     }
   }
@@ -27,6 +28,8 @@ To configure Firecrawl MCP in Zed:
 ```
 
 Replace `YOUR-API-KEY` with your Firecrawl API key. If you don't have one yet, create an account at [firecrawl.dev](https://www.firecrawl.dev/app/api-keys).
+
+If you're using a self-hosted Firecrawl instance, replace `YOUR-API-URL` with your instance URL. If you're using the official Firecrawl service, you can remove the `firecrawl_api_url` line.
 
 ## Agent Mode Configuration
 
