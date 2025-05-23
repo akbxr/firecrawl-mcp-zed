@@ -63,11 +63,35 @@ impl zed::Extension for FirecrawlModelContextExtension {
     fn context_server_configuration(
         &mut self,
         _context_server_id: &ContextServerId,
-        _project: &Project,
+        project: &Project,
     ) -> Result<Option<ContextServerConfiguration>> {
         let installation_instructions =
             include_str!("../configuration/installation_instructions.md").to_string();
-        let default_settings = include_str!("../configuration/default_settings.jsonc").to_string();
+
+        let settings = ContextServerSettings::for_project("mcp-server-firecrawl", project);
+
+        let mut default_settings =
+            include_str!("../configuration/default_settings.jsonc").to_string();
+
+        if let Ok(user_settings) = settings {
+            if let Some(settings_value) = user_settings.settings {
+                if let Ok(firecrawl_settings) =
+                    serde_json::from_value::<FirecrawlContextServerSettings>(settings_value)
+                {
+                    default_settings = default_settings.replace(
+                        "\"YOUR_FIRECRAWL_API_KEY\"",
+                        &format!("\"{}\"", firecrawl_settings.firecrawl_api_key),
+                    );
+
+                    if let Some(api_url) = firecrawl_settings.firecrawl_api_url {
+                        default_settings = default_settings
+                            .replace("// \"firecrawl_api_url\"", "\"firecrawl_api_url\"")
+                            .replace("\"YOUR_FIRECRAWL_API_URL\"", &format!("\"{}\"", api_url));
+                    }
+                }
+            }
+        }
+
         let settings_schema =
             serde_json::to_string(&schemars::schema_for!(FirecrawlContextServerSettings))
                 .map_err(|e| e.to_string())?;
